@@ -11,6 +11,7 @@ public class Certificate {
     private String year;
     private String certificateUrl;
     private String imageUrl;
+    int a;
     private String description;
 
     // Constructors
