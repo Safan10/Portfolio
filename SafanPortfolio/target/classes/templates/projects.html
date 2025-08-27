@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo" th:text="${name}">Your Name</h1>
+        <ul class="nav-menu">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/about}">About</a></li>
+            <li><a th:href="@{/experience}">Experience</a></li>
+            <li><a th:href="@{/projects}" class="active">Projects</a></li>
+            <li><a th:href="@{/education}">Education</a></li>
+            <li><a th:href="@{/certificates}">Certificates</a></li>
+            <li><a th:href="@{/achievements}">Achievements</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <p class="section-subtitle">A collection of projects showcasing my skills in full-stack development and problem-solving</p>
+
+            <div class="projects-grid">
+                <div th:each="project : ${projects}" class="project-card">
+                    <!-- Project Image -->
+                    <div class="project-image">
+                        <img th:src="@{${project.imageUrl}}"
+                             th:alt="${project.title} + ' project image'"
+                             class="project-img"
+                             onerror="this.src='/images/projects/project-placeholder.jpg'">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a th:href="${project.githubUrl}" class="project-link" target="_blank" th:if="${project.githubUrl != '#'}">
+                                    <span>GitHub</span>
+                                </a>
+                                <a th:href="${project.liveUrl}" class="project-link" target="_blank" th:if="${project.liveUrl != '#'}">
+                                    <span>Live Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 th:text="${project.title}">Project Title</h3>
+                            <p class="project-subtitle" th:text="${project.subtitle}">Project Subtitle</p>
+                            <span class="project-date" th:text="${project.date}">Date</span>
+                        </div>
+
+                        <p class="project-description" th:text="${project.description}">
+                            Project description goes here...
+                        </p>
+
+                        <!-- Technologies Used -->
+                        <div class="project-technologies">
+                            <h4>Technologies Used:</h4>
+                            <div class="tech-tags">
+                                    <span th:each="tech : ${project.technologies}"
+                                          class="tech-tag"
+                                          th:text="${tech}">
+                                        Technology
+                                    </span>
+                            </div>
+                        </div>
+
+                        <!-- Project Links -->
+                        <div class="project-actions">
+                            <a th:href="${project.githubUrl}"
+                               class="btn btn-outline"
+                               target="_blank"
+                               th:if="${project.githubUrl != '#'}">
+                                View Code
+                            </a>
+                            <a th:href="${project.liveUrl}"
+                               class="btn btn-primary"
+                               target="_blank"
+                               th:if="${project.liveUrl != '#'}">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+            <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+            <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+        </div>
+        <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+    </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

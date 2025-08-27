@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo" th:text="${name}">Your Name</h1>
+        <ul class="nav-menu">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/about}">About</a></li>
+            <li><a th:href="@{/experience}">Experience</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/education}" class="active">Education</a></li>
+            <li><a th:href="@{/certificates}">Certificates</a></li>
+            <li><a th:href="@{/achievements}">Achievements</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+
+            <div class="timeline">
+                <div th:each="education : ${educations}" class="timeline-item">
+                    <div class="education-item">
+                        <!-- Institution Logo -->
+                        <div class="education-logo" th:if="${education.logoUrl}">
+                            <img th:src="@{${education.logoUrl}}"
+                                 th:alt="${education.institution} + ' logo'"
+                                 class="institution-logo">
+                        </div>
+
+                        <div class="education-content">
+                            <h3 th:text="${education.degree}">Degree</h3>
+                            <p class="institution" th:text="${education.institution}">Institution Name</p>
+                            <p class="field" th:text="${education.fieldOfStudy}">Field of Study</p>
+
+                            <div class="education-details">
+                                <span class="date" th:text="${education.getFormattedDateRange()}">2020 - 2024</span>
+                                <span class="grade" th:text="${education.grade}">Grade: 3.8/4.0</span>
+                                <span class="location" th:text="${education.location}">Location</span>
+                            </div>
+
+                            <p class="description" th:text="${education.description}">Description of studies and achievements...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+            <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+            <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+        </div>
+        <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+    </div>
+</footer>
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

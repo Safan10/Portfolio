@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Footer</title>
+</head>
+<body>
+<footer>
+  <div class="container">
+    <div class="social-links">
+      <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+      <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+      <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+    </div>
+    <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

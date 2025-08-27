@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <h1 class="logo" th:text="${name != null ? name : 'Your Name'}">Your Name</h1>
+    <ul class="nav-menu">
+      <li><a th:href="@{/}" th:classappend="${currentPage == 'home'} ? 'active'">Home</a></li>
+      <li><a th:href="@{/about}" th:classappend="${currentPage == 'about'} ? 'active'">About</a></li>
+      <li><a th:href="@{/experience}" th:classappend="${currentPage == 'experience'} ? 'active'">Experience</a></li>
+      <li><a th:href="@{/projects}" th:classappend="${currentPage == 'projects'} ? 'active'">Projects</a></li>
+      <li><a th:href="@{/education}" th:classappend="${currentPage == 'education'} ? 'active'">Education</a></li>
+      <li><a th:href="@{/certificates}" th:classappend="${currentPage == 'certificates'} ? 'active'">Certificates</a></li>
+      <li><a th:href="@{/achievements}" th:classappend="${currentPage == 'achievements'} ? 'active'">Achievements</a></li>
+      <li><a th:href="@{/contact}" th:classappend="${currentPage == 'contact'} ? 'active'">Contact</a></li>
+    </ul>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<div layout:fragment="content">
+  <!-- Content will be inserted here -->
+</div>
+
+<footer>
+  <div class="container">
+    <div class="social-links">
+      <a th:href="${linkedin}" class="social-link" target="_blank">📱</a>
+      <a th:href="${github}" class="social-link" target="_blank">💻</a>
+      <a th:href="'mailto:' + ${email}" class="social-link">📧</a>
+    </div>
+    <p>&copy; 2024 <span th:text="${name != null ? name : 'Your Name'}">Your Name</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

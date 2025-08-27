@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - Portfolio</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo" th:text="${name}">Your Name</h1>
+        <ul class="nav-menu">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/about}">About</a></li>
+            <li><a th:href="@{/experience}" class="active">Experience</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/education}">Education</a></li>
+            <li><a th:href="@{/certificates}">Certificates</a></li>
+            <li><a th:href="@{/achievements}">Achievements</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+
+            <div class="timeline">
+                <div th:each="exp : ${experiences}" class="timeline-item">
+                    <div class="experience-item">
+                        <!-- Company Logo -->
+                        <div class="company-logo" th:if="${exp.logoUrl}">
+                            <img th:src="@{${exp.logoUrl}}"
+                                 th:alt="${exp.company} + ' logo'"
+                                 class="company-logo-img">
+                        </div>
+
+                        <div class="experience-content">
+                            <div class="experience-header">
+                                <h3 th:text="${exp.position}">Position</h3>
+                                <p class="company" th:text="${exp.company}">Company Name</p>
+                                <div class="experience-details">
+                                    <span class="duration" th:text="${exp.duration}">Duration</span>
+                                    <span class="location" th:text="${exp.location}">Location</span>
+                                </div>
+                            </div>
+
+                            <!-- Responsibilities -->
+                            <div class="responsibilities">
+                                <h4>Key Responsibilities & Achievements:</h4>
+                                <ul>
+                                    <li th:each="responsibility : ${exp.responsibilities}"
+                                        th:text="${responsibility}">
+                                        Responsibility description
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Technologies Used -->
+                            <div class="technologies">
+                                <h4>Technologies Used:</h4>
+                                <div class="tech-tags">
+                                        <span th:each="tech : ${exp.technologies}"
+                                              class="tech-tag"
+                                              th:text="${tech}">
+                                            Technology
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+            <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+            <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+        </div>
+        <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+    </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

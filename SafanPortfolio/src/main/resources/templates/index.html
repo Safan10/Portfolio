@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <h1 class="logo" th:text="${name}">Your Name</h1>
+    <ul class="nav-menu">
+      <li><a th:href="@{/}">Home</a></li>
+      <li><a th:href="@{/about}">About</a></li>
+      <li><a th:href="@{/experience}">Experience</a></li>
+      <li><a th:href="@{/projects}">Projects</a></li>
+      <li><a th:href="@{/education}">Education</a></li>
+      <li><a th:href="@{/certificates}">Certificates</a></li>
+      <li><a th:href="@{/achievements}">Achievements</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="profile-section">
+          <!-- FIXED: Use Thymeleaf URL syntax with model attribute -->
+          <div class="profile-image-container">
+            <img th:src="@{/image/myprofile.jpeg}"
+                 alt="Profile Photo"
+                 class="profile-image"
+                 onerror="this.onerror=null; this.src='/image/placeholder.jpg'">
+          </div>
+
+          <div class="hero-text">
+            <h1 th:text="|Hello, I'm ${name}|">Hello, I'm Your Name</h1>
+            <p class="hero-title" th:text="${title}">Full Stack Developer</p>
+            <p class="hero-description">I create amazing web applications using modern technologies</p>
+            <div class="cta-buttons">
+              <a th:href="@{/projects}" class="btn btn-primary">View My Work</a>
+              <a th:href="@{/contact}" class="btn btn-outline">Get In Touch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social-links">
+      <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+      <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+      <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+    </div>
+    <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+
+<!-- Debug script to check image loading -->
+<script>
+  console.log("Testing image path...");
+  const img = document.querySelector('.profile-image');
+  console.log('Image source:', img.src);
+  console.log('Image complete:', img.complete);
+  console.log('Image natural width:', img.naturalWidth);
+
+  img.addEventListener('load', () => {
+      console.log('✅ Image loaded successfully!');
+  });
+  img.addEventListener('error', () => {
+      console.error('❌ Image failed to load');
+  });
+</script>
+</body>
+</html>

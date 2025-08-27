@@ -1,0 +1,9 @@
+com/portfolio/SafanPortfolio/model/Project.class
+com/portfolio/SafanPortfolio/controller/PortfolioController.class
+com/portfolio/SafanPortfolio/model/Certificate.class
+com/portfolio/SafanPortfolio/service/EmailService.class
+com/portfolio/SafanPortfolio/service/EducationService.class
+com/portfolio/SafanPortfolio/model/Experience.class
+com/portfolio/SafanPortfolio/SafanPortfolioApplication.class
+com/portfolio/SafanPortfolio/model/Achievement.class
+com/portfolio/SafanPortfolio/model/Education.class

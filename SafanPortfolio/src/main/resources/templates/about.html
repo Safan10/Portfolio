@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo" th:text="${name}">Your Name</h1>
+        <ul class="nav-menu">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/about}" class="active">About</a></li>
+            <li><a th:href="@{/experience}">Experience</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/education}">Education</a></li>
+            <li><a th:href="@{/certificates}">Certificates</a></li>
+            <li><a th:href="@{/achievements}">Achievements</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+
+            <div class="about-content">
+                <!-- Profile Section -->
+                <div class="profile-section">
+
+
+                    <div class="about-text">
+                        <h3>Java Backend Developer</h3>
+                        <p class="about-summary" th:text="${aboutSummary}">
+                            Java Backend Developer with hands-on experience...
+                        </p>
+
+                        <div class="quick-info">
+                            <div class="info-item">
+                                <span class="info-label">Experience:</span>
+                                <span class="info-value">TCS</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Specialization:</span>
+                                <span class="info-value">Backend Development</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Focus:</span>
+                                <span class="info-value">Spring Boot & REST APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="skills-section">
+                    <h3 class="skills-title">Technical Skills</h3>
+
+                    <!-- Categorized Skills -->
+                    <div class="skills-categories">
+                        <div th:each="category : ${categorizedSkills}" class="skill-category">
+                            <h4 th:text="${category.key}">Category</h4>
+                            <div class="skill-tags">
+                                    <span th:each="skill : ${category.value}"
+                                          class="skill-tag"
+                                          th:text="${skill}">
+                                        Skill
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Skills Grid (Alternative View) -->
+                    <div class="all-skills">
+                        <h4>All Skills</h4>
+                        <div class="skills-grid">
+                            <div th:each="skill : ${skills}"
+                                 class="skill-item"
+                                 th:text="${skill}">
+                                Skill
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+            <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+            <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+        </div>
+        <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+    </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates & Achievements - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo" th:text="${name}">Your Name</h1>
+        <ul class="nav-menu">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/about}">About</a></li>
+            <li><a th:href="@{/experience}">Experience</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/education}">Education</a></li>
+            <li><a th:href="@{/certificates}" class="active">Certificates</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <p class="section-subtitle">Professional certifications and academic achievements showcasing my skills and dedication</p>
+
+            <!-- Certifications Section -->
+            <div class="certificates-section">
+                <h3 class="subsection-title">Professional Certifications</h3>
+
+                <div class="certificates-grid">
+                    <div th:each="cert : ${certifications}" class="certificate-card">
+                        <div class="certificate-image">
+                            <img th:src="@{${cert.imageUrl}}"
+                                 th:alt="${cert.title} + ' certificate'"
+                                 class="certificate-img"
+                                 onerror="this.src='/images/certificates/certificate-placeholder.jpg'">
+                            <div class="certificate-overlay">
+                                <a th:href="${cert.certificateUrl}" class="view-certificate" target="_blank">
+                                    View Certificate
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="certificate-content">
+                            <h4 th:text="${cert.title}">Certificate Title</h4>
+                            <div class="certificate-details">
+                                <span class="issuer" th:text="${cert.issuer}">Issuer</span>
+                                <span class="year" th:text="${cert.year}">Year</span>
+                                <span class="category" th:text="${cert.category}">Category</span>
+                            </div>
+                            <p class="certificate-desc" th:text="${cert.description}">Certificate description</p>
+                            <a th:href="${cert.certificateUrl}" class="btn btn-outline" target="_blank">
+                                Verify Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="achievements-section">
+                <h3 class="subsection-title">Academic Achievements</h3>
+
+                <div class="achievements-grid">
+                    <div th:each="achievement : ${achievements}" class="achievement-card">
+                        <div class="achievement-image">
+                            <img th:src="@{${achievement.imageUrl}}"
+                                 th:alt="${achievement.title}"
+                                 class="achievement-img"
+                                 onerror="this.src='/images/achievements/achievement-placeholder.jpg'">
+                        </div>
+
+                        <div class="achievement-content">
+                            <h4 th:text="${achievement.title}">Achievement Title</h4>
+                            <div class="achievement-details">
+                                <span class="category" th:text="${achievement.category}">Category</span>
+                                <span class="year" th:text="${achievement.year}">Year</span>
+                            </div>
+                            <p class="achievement-desc" th:text="${achievement.description}">Achievement description</p>
+                            <a th:href="${achievement.certificateUrl}" class="btn btn-outline" target="_blank" th:if="${achievement.certificateUrl != '#'}">
+                                View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<<footer>
+    <div class="container">
+        <div class="social-links">
+            <a th:href="${linkedin}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+            <a th:href="${github}" class="social-link" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+            <a th:href="'mailto:' + ${email}" class="social-link"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+        </div>
+        <p>&copy; 2024 <span th:text="${name}">Your Name</span>. All rights reserved.</p>
+    </div>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>

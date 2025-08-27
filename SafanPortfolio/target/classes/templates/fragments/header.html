@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${currentPage + ' - ' + (name != null ? name : 'Portfolio')}">Portfolio</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <h1 class="logo" th:text="${name != null ? name : 'Your Name'}">Your Name</h1>
+    <ul class="nav-menu">
+      <li><a th:href="@{/}" th:classappend="${currentPage == 'home'} ? 'active'">Home</a></li>
+      <li><a th:href="@{/about}" th:classappend="${currentPage == 'about'} ? 'active'">About</a></li>
+      <li><a th:href="@{/experience}" th:classappend="${currentPage == 'experience'} ? 'active'">Experience</a></li>
+      <li><a th:href="@{/projects}" th:classappend="${currentPage == 'projects'} ? 'active'">Projects</a></li>
+      <li><a th:href="@{/education}" th:classappend="${currentPage == 'education'} ? 'active'">Education</a></li>
+      <li><a th:href="@{/certificates}" th:classappend="${currentPage == 'certificates'} ? 'active'">Certificates</a></li>
+      <li><a th:href="@{/achievements}" th:classappend="${currentPage == 'achievements'} ? 'active'">Achievements</a></li>
+      <li><a th:href="@{/contact}" th:classappend="${currentPage == 'contact'} ? 'active'">Contact</a></li>
+    </ul>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
